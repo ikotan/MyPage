@@ -1,0 +1,13 @@
+name: MyPage::Web
+encoding: UTF-8
+View::TT:
+  INCLUDE_PATH:
+    - template
+  TEMPLATE_EXTENSION: '.tt'
+  ENCODING : utf-8
+Model::DBIC:
+  connect_info:
+    - 'dbi:mysql:mypage'
+    - 'root'
+    - ''
+    - mysql_enable_utf8 : 1
