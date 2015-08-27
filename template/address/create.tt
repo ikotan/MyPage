@@ -33,6 +33,40 @@
 
         <!-- Main content -->
         <section class="content">
+          <!-- Register form -->
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Register</h3>
+                </div>
+                <form class="form-horizontal">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="full_name" class="col-sm-2 control-label">Full Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="full_name" placeholder="Full Name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-sm-2 control-label">Password</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                      </div>
+                    </div>
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                  </div><!-- /.box-footer -->
+                </form>
+
+              </div>
+            </div>
+            <div class="col-sm-3"></div>
+          </div><!-- /.row -->
+
           <!-- Info boxes -->
           <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
