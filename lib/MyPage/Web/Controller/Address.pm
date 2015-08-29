@@ -27,7 +27,7 @@ Catalyst Controller.
 sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
   $c->stash( address_books =>
-    MyPage::Util::Address->new->list_search( $c->req->params ) );
+    MyPage::Util::Address->new->search_list( $c->req->params ) );
 }
 
 sub search :Local {

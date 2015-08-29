@@ -4,16 +4,20 @@ use namespace::autoclean;
 
 extends 'MyPage::Util';
 
+use constant DEFAULT_PAGE => 1;
+use constant DEFAULT_ROWS => 5;
+
 use Data::Dumper::Names;
 
-sub list_search {
+sub search_list {
   my ( $self, $params ) = @_;
+
   my $schema = $self->schema;
   return [ $self->schema->resultset("AddressBook")->search(
     undef,
     {
-      page => $params->{ page } // 1,
-      rows => $params->{ rows } // 3
+      page => $params->{ page } // DEFAULT_PAGE,
+      rows => $params->{ rows } // DEFAULT_ROWS
     }
   ) ];
 }
