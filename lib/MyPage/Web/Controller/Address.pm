@@ -26,10 +26,8 @@ Catalyst Controller.
 
 sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
-
-  $c->stash(
-    address_books => [ $c->model("DBIC::AddressBook")->all ],
-  );
+  $c->stash( address_books =>
+    MyPage::Util::Address->new->list_search( $c->req->params ) );
 }
 
 sub search :Local {

@@ -6,6 +6,18 @@ extends 'MyPage::Util';
 
 use Data::Dumper::Names;
 
+sub list_search {
+  my ( $self, $params ) = @_;
+  my $schema = $self->schema;
+  return [ $self->schema->resultset("AddressBook")->search(
+    undef,
+    {
+      page => $params->{ page } // 1,
+      rows => $params->{ rows } // 3
+    }
+  ) ];
+}
+
 sub create_params {
   my ( $self, $params ) = @_;
 
