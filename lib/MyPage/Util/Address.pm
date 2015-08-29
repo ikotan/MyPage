@@ -11,7 +11,7 @@ sub create_params {
 
   return {
     full_name     => $params->{ full_name },
-    birthday      => join '-', @{ $params }{ qw/year month day/ },
+    birthday      => join( '-', @{ $params }{ qw/year month day/ } ),
     sex_code      => $params->{ sex_code },
     postal_code   => $params->{ postal_code },
     prefecture_id => $params->{ prefecture_id },
