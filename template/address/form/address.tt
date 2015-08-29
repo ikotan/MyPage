@@ -1,0 +1,75 @@
+<!-- Register form -->
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">新規登録画面</h3>
+      </div>
+      <form action="/address/create" method="POST" class="form-horizontal">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="full_name" class="col-sm-2 control-label">お名前</label>
+            <div class="col-sm-10">
+              <input type="text" name="full_name" class="form-control" id="full_name" placeholder="お名前">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sex" class="col-sm-2 control-label">性別</label>
+            <div class="col-sm-10">
+              <input type="radio" name="sex_code" class="minimal" id="sex" value=1 checked="checked">
+              男性
+              <input type="radio" name="sex_code" class="minimal" id="sex" value=0>
+              女性
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="birthday" class="col-sm-2 control-label">誕生日</label>
+            <div class="col-sm-10 form-inline">
+              <input type="text" name="year" class="form-control" id="birthday" placeholder="年" style="width: 70px"><span style="margin: 0 5px;">年</span>
+              <input type="text" name="month" class="form-control" id="birthday" placeholder="月" style="width: 50px"><span style="margin: 0 5px;">月</span>
+              <input type="text" name="day" class="form-control" id="birthday" placeholder="日" style="width: 50px"><span style="margin: 0 5px;">日</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Postal-Code" class="col-sm-2 control-label">郵便番号</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon">〒</span>
+                <input type="text" name="postal_code" id="Postal-Code" class="form-control" placeholder="000-0000">
+              </div>
+            </div>
+            <div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-5"></div>
+          </div>
+          <div class="form-group">
+            <label for="Prefecture" class="col-sm-2 control-label">都道府県</label>
+            <div class="col col-xs-7 col-sm-4 col-md-3">
+              <select name="prefecture_id" id="Prefecture" class="form-control">
+                <option value=""></option>
+                [% FOREACH p = prefectures %]
+                <option value=[% p.prefecture_id %]>[% p.name | html %]</option>
+                [% END %]
+              </select>
+            </div>
+            <div class="col-xs-offset-5 col-sm-offset-4 col-md-offset-6"></div>
+          </div>
+          <div class="form-group">
+            <label for="Address" class="col-sm-2 control-label">住所</label>
+            <div class="col-sm-10">
+              <input type="text" name="city" id="Address" class="form-control" placeholder="市区町村名">
+              <p class="help-block">住所は2つに分けてご記入ください。</p>
+              <input type="text" name="address" id="Address" class="form-control" placeholder="番地・ビル名">
+              <p class="help-block">マンション名は必ず記入してください。</p>
+            </div>
+          </div>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+          <button type="submit" class="btn btn-default">キャンセル</button>
+          <button type="submit" class="btn btn-info pull-right">登録</button>
+        </div><!-- /.box-footer -->
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div><!-- /.row -->
+<!-- Register form -->

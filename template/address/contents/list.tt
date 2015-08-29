@@ -1,0 +1,64 @@
+<!-- Tabile -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">住所録一覧</h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <div id="example2_wrapper" class="form-inline dt-bootstrap">
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-bordered table-hover" role="grid">
+                <thead>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">
+                      名前
+                    </th>
+                    <th rowspan="1" colspan="1">
+                      性別
+                    </th>
+                    <th rowspan="1" colspan="1">
+                      年齢
+                    </th>
+                    <th rowspan="1" colspan="1">
+                      生年月日
+                    </th>
+                    <th rowspan="1" colspan="1">
+                      郵便番号
+                    </th>
+                    <th rowspan="1" colspan="1">
+                      都道府県
+                    </th>
+                    <th rowspan="1" colspan="1">
+                      登録日
+                    </th>
+                    <th rowspan="1" colspan="1">
+                      更新日
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  [% FOREACH a = address_books %]
+                  <tr role="row" class="odd">
+                    <td class="sorting_1">[% a.full_name | html %]</td>
+                    <td>[% SWITCH a.sex_code %] [% CASE 0 %] 女性 [% CASE 1 %] 男性 [% END %]</td>
+                    <td>[% a.age | html %]</td>
+                    <td>[% a.birthday | html %]</td>
+                    <td>[% a.postal_code | html %]</td>
+                    <td>[% a.prefecture.name | html %]</td>
+                    <td>[% a.create_time | html %]</td>
+                    <td>[% a.last_update | html %]</td>
+                  </tr>
+                  [% END %]
+                  <tr role="row" class="odd">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Tabile -->
