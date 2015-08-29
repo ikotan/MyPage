@@ -44,7 +44,7 @@
                     <td class="sorting_1">[% a.full_name | html %]</td>
                     <td>[% SWITCH a.sex_code %] [% CASE 0 %] 女性 [% CASE 1 %] 男性 [% END %]</td>
                     <td>[% a.age | html %]</td>
-                    <td>[% a.birthday | html %]</td>
+                    <td>[% a.birthday.date | html %]</td>
                     <td>[% a.postal_code | html %]</td>
                     <td>[% a.prefecture.name | html %]</td>
                     <td>[% a.create_time | html %]</td>

@@ -175,7 +175,14 @@ __PACKAGE__->set_primary_key("address_books_id");
 # Created by DBIx::Class::Schema::Loader v0.07043 @ 2015-08-29 07:59:52
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:gqeFlKqhhgXTj9LQfl3lWw
 
-__PACKAGE__->belongs_to('prefecture' => 'MyPage::Web::Schema::Result::Prefecture', 'prefecture_id');
+__PACKAGE__->belongs_to( prefecture => 'MyPage::Web::Schema::Result::Prefecture', 'prefecture_id' );
+
+extends 'MyPage::Web::Schema::ResultBase';
+
+sub age {
+  my $self = shift;
+  return +( $self->now - $self->birthday )->years;
+}
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
