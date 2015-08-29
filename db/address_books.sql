@@ -12,8 +12,8 @@ CREATE TABLE `address_books` (
   `prefecture_id` int(11) NOT NULL COMMENT '都道府県番号(1:北海道～47:沖縄)',
   `city` text NOT NULL COMMENT '住所(市区町村)',
   `address` text NOT NULL COMMENT '住所(番地・建物)',
-  `created` datetime NOT NULL COMMENT '作成日時',
-  `modified` datetime NOT NULL COMMENT '更新日時',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '作成日時',
+  `last_update` timestamp DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `delete_flag` tinyint(1) NOT NULL DEFAULT '0' COMMENT '削除フラグ',
   PRIMARY KEY (`address_books_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -22,7 +22,8 @@ CREATE TABLE `address_books` (
 DROP TABLE `prefectures`;
 CREATE TABLE `prefectures` (
   `prefecture_id` int(11) NOT NULL COMMENT '都道府県番号(1:北海道～47:沖縄)',
-  `name` varchar(20) NOT NULL COMMENT '都道府県名'
+  `name` varchar(20) NOT NULL COMMENT '都道府県名',
+  PRIMARY KEY (`prefecture_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO prefectures VALUES (1, '北海道');
