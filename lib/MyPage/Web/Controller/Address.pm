@@ -1,7 +1,8 @@
 package MyPage::Web::Controller::Address;
 use Moose;
 use namespace::autoclean;
-use MyPage::Util::Address;
+use MyPage::Util::Logic::Address;
+use MyPage::Util::API::Address;
 
 use Data::Dumper::Names;
 
@@ -26,8 +27,13 @@ Catalyst Controller.
 
 sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
-  $c->stash( address_books =>
-    MyPage::Util::Address->new->search_list( $c->req->params ) );
+
+  my $api = MyPage::Util::API::Address->new;
+  my $data = $api->expand_dbic(
+    MyPage::Util::Logic::Address->new->search_list( $c->req->params ) );
+  $c->stash( address_books => $data );
+
+  $c->forward("View::JSON");
 }
 
 # sub search :Local {
@@ -46,7 +52,7 @@ sub get_create :GET Path('create') Args(0) {
 sub post_create :POST Path('create') Args(0) {
   my ( $self, $c ) = @_;
 
-  my $data = MyPage::Util::Address->new->create_params( $c->req->params );
+  my $data = MyPage::Util::Logic::Address->new->create_params( $c->req->params );
   $c->model("DBIC::AddressBook")->create( $data );
 
   $c->res->redirect( $c->uri_for('/address') );

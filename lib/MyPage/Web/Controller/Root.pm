@@ -35,6 +35,12 @@ sub index :Path :Args(0) {
     # $c->response->body( $c->welcome_message );
 }
 
+sub hello : Local {
+  my($self, $c) = @_;
+  $c->stash->{message} = "Hello Wold!";
+  $c->forward('View::JSON');
+}
+
 =head2 default
 
 Standard 404 error page

@@ -1,8 +1,8 @@
-package MyPage::Util::Address;
+package MyPage::Util::Logic::Address;
 use Moose;
 use namespace::autoclean;
 
-extends 'MyPage::Util';
+extends 'MyPage::Util::Logic';
 
 use constant DEFAULT_PAGE => 1;
 use constant DEFAULT_ROWS => 15;
