@@ -30,11 +30,11 @@ sub index :Path :Args(0) {
     MyPage::Util::Address->new->search_list( $c->req->params ) );
 }
 
-sub search :Local {
-  my ( $self, $c ) = @_;
-}
+# sub search :Local {
+  # my ( $self, $c ) = @_;
+# }
 
-sub get_create :GET Path('create') {
+sub get_create :GET Path('create') Args(0) {
   my ( $self, $c ) = @_;
 
   $c->stash(
@@ -43,7 +43,7 @@ sub get_create :GET Path('create') {
   );
 }
 
-sub post_create :POST Path('create') {
+sub post_create :POST Path('create') Args(0) {
   my ( $self, $c ) = @_;
 
   my $data = MyPage::Util::Address->new->create_params( $c->req->params );
@@ -52,12 +52,34 @@ sub post_create :POST Path('create') {
   $c->res->redirect( $c->uri_for('/address') );
 }
 
-sub update :Local {
+sub base :Chained('/') PathPart('address') CaptureArgs(1) {
+  my ( $self, $c, $args ) = @_;
+
+  $c->stash(
+    prefectures => [ $c->model("DBIC::Prefecture")->all ],
+    address     => $c->model("DBIC::AddressBook")->find( $args ),
+    template    => 'address/edit.tt'
+  );
+}
+
+sub get_edit :Chained('base') GET PathPart('edit') Args(0) {
+  my ( $self, $c ) = @_;
+
+  my $params = $c->req->params;
+  warn Dumper $params;
+  $c->stash->{ fdat } = $c->stash->{ address };
+
+}
+
+sub post_edit :Chained('base') POST PathPart('edit') Args(0) {
   my ( $self, $c ) = @_;
 }
 
-sub delete :Local {
+sub delete :Chained('base') DELETE PathPart('delete') Args(0) {
   my ( $self, $c ) = @_;
+  warn Dumper "############";
+  warn Dumper "DELETE";
+  warn Dumper "############";
 }
 
 

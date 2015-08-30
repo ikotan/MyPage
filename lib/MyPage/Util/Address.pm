@@ -5,7 +5,7 @@ use namespace::autoclean;
 extends 'MyPage::Util';
 
 use constant DEFAULT_PAGE => 1;
-use constant DEFAULT_ROWS => 5;
+use constant DEFAULT_ROWS => 15;
 
 use Data::Dumper::Names;
 

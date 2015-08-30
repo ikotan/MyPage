@@ -36,6 +36,9 @@
                     <th rowspan="1" colspan="1">
                       更新日
                     </th>
+                    <th rowspan="1" colspan="1">
+                      確認 / 編集 / 削除
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,6 +52,11 @@
                     <td>[% a.prefecture.name | html %]</td>
                     <td>[% a.create_time | html %]</td>
                     <td>[% a.last_update | html %]</td>
+                    <td>
+                      <a href="#">確認 /</a>
+                      <a href="#">編集 /</a>
+                      <a href="#" data-method="delete">削除</a>
+                    </td>
                   </tr>
                   [% END %]
                   <tr role="row" class="odd">

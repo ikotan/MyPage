@@ -184,6 +184,12 @@ sub age {
   return +( $self->now - $self->birthday )->years;
 }
 
+sub year { shift->birthday->year }
+
+sub month { shift->birthday->month }
+
+sub day { shift->birthday->day }
+
 # You can replace this text with custom content, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
 1;

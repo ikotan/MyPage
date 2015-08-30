@@ -3,7 +3,7 @@ use Moose;
 use namespace::autoclean;
 
 has 'schema' => (
-  is         => 'ro',
+  is         => 'rw',
   isa        => 'DBIx::Class',
   lazy_build => 1
 );
