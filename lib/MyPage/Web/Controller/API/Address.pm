@@ -8,32 +8,14 @@ use Data::Dumper::Names;
 
 BEGIN { extends 'Catalyst::Controller'; }
 
-=head1 NAME
-
-MyPage::Web::Controller::API::Address - Catalyst Controller
-
-=head1 DESCRIPTION
-
-Catalyst Controller.
-
-=head1 METHODS
-
-=cut
-
-
-=head2 index
-
-=cut
-
 sub list :GET Path('list') :Args(0) {
   my ( $self, $c ) = @_;
 
   my $api = MyPage::Util::API::Address->new;
-  my $data = $api->expand_dbic(
+  my $data = $api->format_list(
     MyPage::Util::Logic::Address->new->search_list( $c->req->params ) );
-  $c->stash( address_books => $data );
 
-  $c->forward("View::JSON");
+  $c->stash( address_books => $data );
 }
 
 =encoding utf8

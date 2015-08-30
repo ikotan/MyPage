@@ -16,6 +16,7 @@ sub search_list {
   return [ $self->schema->resultset("AddressBook")->search(
     undef,
     {
+      join => 'prefecture',
       page => $params->{ page } // DEFAULT_PAGE,
       rows => $params->{ rows } // DEFAULT_ROWS
     }

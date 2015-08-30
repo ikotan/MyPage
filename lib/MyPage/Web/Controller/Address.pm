@@ -7,30 +7,11 @@ use Data::Dumper::Names;
 
 BEGIN { extends 'Catalyst::Controller'; }
 
-=head1 NAME
-
-MyPage::Web::Controller::Address - Catalyst Controller
-
-=head1 DESCRIPTION
-
-Catalyst Controller.
-
-=head1 METHODS
-
-=cut
-
-
-=head2 index
-
-=cut
-
 sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
 
   $c->stash( address_books =>
     MyPage::Util::Logic::Address->new->search_list( $c->req->params ) );
-
-  $c->forward("View::TT");
 }
 
 # sub search :Local {
@@ -44,7 +25,6 @@ sub get_create :GET Path('create') Args(0) {
     prefectures => [ $c->model("DBIC::Prefecture")->all ],
     template    => 'address/create.tt'
   );
-  $c->forward("View::TT");
 }
 
 sub post_create :POST Path('create') Args(0) {
@@ -80,8 +60,6 @@ sub delete :Chained('base') DELETE PathPart('delete') Args(0) {
   warn Dumper "DELETE";
   warn Dumper "############";
 }
-
-
 
 =encoding utf8
 

@@ -10,23 +10,6 @@ BEGIN { extends 'Catalyst::Controller' }
 #
 __PACKAGE__->config(namespace => '');
 
-=encoding utf-8
-
-=head1 NAME
-
-MyPage::Web::Controller::Root - Root Controller for MyPage::Web
-
-=head1 DESCRIPTION
-
-[enter your description here]
-
-=head1 METHODS
-
-=head2 index
-
-The root page (/)
-
-=cut
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
@@ -59,7 +42,17 @@ Attempt to render a view, if needed.
 
 =cut
 
-sub end : ActionClass('RenderView') {}
+sub end : Private {
+  my ( $self, $c ) = @_;
+
+  if ( $c->req->path =~ m/^api/ ) {
+    $c->forward('View::JSON');
+  } else {
+    $c->forward('View::TT');
+  }
+}
+
+sub render : ActionClass('RenderView') {}
 
 =head1 AUTHOR
 
