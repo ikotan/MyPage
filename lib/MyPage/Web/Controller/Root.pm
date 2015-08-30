@@ -45,11 +45,9 @@ Attempt to render a view, if needed.
 sub end : Private {
   my ( $self, $c ) = @_;
 
-  if ( $c->req->path =~ m/^api/ ) {
-    $c->forward('View::JSON');
-  } else {
-    $c->forward('View::TT');
-  }
+  $c->req->path =~ m/^api/
+    ? $c->forward('View::JSON')
+    : $c->forward('View::TT');
 }
 
 sub render : ActionClass('RenderView') {}

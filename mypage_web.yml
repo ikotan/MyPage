@@ -6,9 +6,9 @@ View::TT:
   TEMPLATE_EXTENSION: '.tt'
   ENCODING : utf-8
 View::JSON:
-  ALLOW_CALLBACK: 1
-  CALLBACK_PARAM: 'cb'
-  EXPOSE_STASH: [ qw(foo bar) ]
+  # ALLOW_CALLBACK: 1
+  # CALLBACK_PARAM: 'cb'
+  # EXPOSE_STASH: [ qw(foo bar) ]
 Model::DBIC:
   connect_info:
     - 'dbi:mysql:mypage'
