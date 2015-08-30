@@ -2,7 +2,6 @@ package MyPage::Web::Controller::Address;
 use Moose;
 use namespace::autoclean;
 use MyPage::Util::Logic::Address;
-use MyPage::Util::API::Address;
 
 use Data::Dumper::Names;
 
@@ -28,12 +27,10 @@ Catalyst Controller.
 sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
 
-  my $api = MyPage::Util::API::Address->new;
-  my $data = $api->expand_dbic(
+  $c->stash( address_books =>
     MyPage::Util::Logic::Address->new->search_list( $c->req->params ) );
-  $c->stash( address_books => $data );
 
-  $c->forward("View::JSON");
+  $c->forward("View::TT");
 }
 
 # sub search :Local {
@@ -47,6 +44,7 @@ sub get_create :GET Path('create') Args(0) {
     prefectures => [ $c->model("DBIC::Prefecture")->all ],
     template    => 'address/create.tt'
   );
+  $c->forward("View::TT");
 }
 
 sub post_create :POST Path('create') Args(0) {
