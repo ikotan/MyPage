@@ -64,11 +64,6 @@ sub base :Chained('/') PathPart('address') CaptureArgs(1) {
 
 sub get_edit :Chained('base') GET PathPart('edit') Args(0) {
   my ( $self, $c ) = @_;
-
-  my $params = $c->req->params;
-  warn Dumper $params;
-  $c->stash->{ fdat } = $c->stash->{ address };
-
 }
 
 sub post_edit :Chained('base') POST PathPart('edit') Args(0) {
