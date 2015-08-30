@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     [% INCLUDE layout/header.link.tt %]
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-blue sidebar-mini" ng-app="addressBooks">
     <div class="wrapper">
 
       [% INCLUDE layout/header.tt %]
@@ -32,7 +32,8 @@
         </section>
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content" ng-controller="mainCtrl" >
+          <h1>{{ title }}</h1>
           <!-- Tabile -->
           [% INCLUDE address/contents/list.tt %]
           <!-- Tabile -->
@@ -55,5 +56,6 @@
     </div><!-- ./wrapper -->
 
     [% INCLUDE layout/footer.tt %]
+
   </body>
 </html>
