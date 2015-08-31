@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     [% INCLUDE layout/header.link.tt %]
   </head>
-  <body class="hold-transition skin-blue sidebar-mini" ng-app="addressBooks">
+  <body class="hold-transition skin-blue sidebar-mini sidebar-collapse" ng-app="addressBooks">
     <div class="wrapper">
 
       [% INCLUDE layout/header.tt %]
