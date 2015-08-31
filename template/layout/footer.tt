@@ -20,4 +20,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="js/demo.js"></script>
 <!-- AngularJS Module-->
-<script src="plugins/angular/angular.app.js"></script>
+<script src="plugins/angular/address.app.js"></script>
+<script src="plugins/angular/controllers/address.js"></script>
+<script src="plugins/angular/services/api/address.js"></script>
