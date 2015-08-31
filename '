@@ -1,5 +1,4 @@
 name: MyPage::Web
-default_view: 'TT'
 encoding: UTF-8
 View::TT:
   INCLUDE_PATH:

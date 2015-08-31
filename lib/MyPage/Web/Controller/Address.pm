@@ -29,7 +29,7 @@ sub post_create :POST Path('create') Args(0) {
   my $data = MyPage::Util::Logic::Address->new->create_params( $c->req->params );
   $c->model("DBIC::AddressBook")->create( $data );
 
-  $c->go('index');
+  $c->res->redirect( $c->uri_for('/address') );
 }
 
 sub base :Chained('/') PathPart('address') CaptureArgs(1) {

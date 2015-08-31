@@ -42,15 +42,11 @@ Attempt to render a view, if needed.
 
 =cut
 
-sub end : Private {
+sub end : ActionClass('RenderView') {
   my ( $self, $c ) = @_;
 
-  $c->req->path =~ m/^api/
-    ? $c->forward('View::JSON')
-    : $c->forward('View::TT');
+  $c->forward('View::JSON') if $c->req->path =~ m/^api/;
 }
-
-sub render : ActionClass('RenderView') {}
 
 =head1 AUTHOR
 
