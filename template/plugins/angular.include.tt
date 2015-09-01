@@ -1,0 +1,4 @@
+<!-- AngularJS CDN-->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js"></script>

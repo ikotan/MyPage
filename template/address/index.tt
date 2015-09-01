@@ -1,31 +1,17 @@
 [% WRAPPER layout/html.wrapper.tt %]
   [% WRAPPER layout/header.wrapper.tt %]
   <!-- AngularJS CDN-->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js"></script>
+  [% INCLUDE plugins/angular.include.tt %]
   [% END %]
   <body class="hold-transition skin-blue sidebar-mini sidebar-collapse" ng-app="addressBooks">
     <div class="wrapper">
-
       [% INCLUDE layout/header.tt %]
-
       <!-- Left side column. contains the logo and sidebar -->
       [% INCLUDE layout/sidebar.left.tt %]
-
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Address Books
-            <small>List</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Address Books</a></li>
-            <li class="active">List</li>
-          </ol>
-        </section>
+        [% INCLUDE layout/content.header.tt %]
 
         <!-- Main content -->
         <section class="content" ng-controller="mainCtrl" >
@@ -34,24 +20,22 @@
           [% INCLUDE address/contents/list.tt %]
           <!-- Tabile -->
         </section><!-- /.content -->
+
       </div><!-- /.content-wrapper -->
 
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
-        </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
-      </footer>
-
+      [% INCLUDE layout/footer.tt %]
       [% INCLUDE layout/sidebar.right.tt %]
-
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
-
     </div><!-- ./wrapper -->
-
-    [% INCLUDE layout/footer.tt %]
+    [% WRAPPER layout/script.wrapper.tt %]
+    <!-- AngularJS Module-->
+    <script src="/static/plugins/angular/address.app.js"></script>
+    <script src="/static/plugins/angular/controllers/address.js"></script>
+    <script src="/static/plugins/angular/services/api/address.js"></script>
+    <script src="/static/plugins/angular/filters.js"></script>
+    [% END %]
 
   </body>
 [% END %]

@@ -4,9 +4,7 @@ addressBooks
   $scope.title = "AngularJS";
 
   addressApi.list({ page: '' }, function(data) {
-    angular.forEach(data.address_books, function(d) {
-     console.log(d);
-    })
+    $scope.data = data;
   });
 
 }]);

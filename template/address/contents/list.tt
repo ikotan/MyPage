@@ -3,7 +3,7 @@
   <div class="col-sm-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">住所録一覧</h3>
+        <h3 class="box-title">住所一覧</h3>
       </div><!-- /.box-header -->
       <div class="box-body">
         <div id="example2_wrapper" class="form-inline dt-bootstrap">
@@ -12,53 +12,33 @@
               <table class="table table-bordered table-hover" role="grid">
                 <thead>
                   <tr role="row">
-                    <th rowspan="1" colspan="1">
-                      名前
-                    </th>
-                    <th rowspan="1" colspan="1">
-                      性別
-                    </th>
-                    <th rowspan="1" colspan="1">
-                      年齢
-                    </th>
-                    <th rowspan="1" colspan="1">
-                      生年月日
-                    </th>
-                    <th rowspan="1" colspan="1">
-                      郵便番号
-                    </th>
-                    <th rowspan="1" colspan="1">
-                      都道府県
-                    </th>
-                    <th rowspan="1" colspan="1">
-                      登録日
-                    </th>
-                    <th rowspan="1" colspan="1">
-                      更新日
-                    </th>
-                    <th rowspan="1" colspan="1">
-                      確認 / 編集 / 削除
-                    </th>
+                    <th rowspan="1" colspan="1">名前</th>
+                    <th rowspan="1" colspan="1">性別</th>
+                    <th rowspan="1" colspan="1">年齢</th>
+                    <th rowspan="1" colspan="1">生年月日</th>
+                    <th rowspan="1" colspan="1">郵便番号</th>
+                    <th rowspan="1" colspan="1">都道府県</th>
+                    <th rowspan="1" colspan="1">登録日</th>
+                    <th rowspan="1" colspan="1">更新日</th>
+                    <th rowspan="1" colspan="1">確認 / 編集 / 削除</th>
                   </tr>
                 </thead>
                 <tbody>
-                  [% FOREACH a = address_books %]
-                  <tr role="row" class="odd">
-                    <td class="sorting_1">[% a.full_name | html %]</td>
-                    <td>[% SWITCH a.sex_code %] [% CASE 0 %] 女性 [% CASE 1 %] 男性 [% END %]</td>
-                    <td>[% a.age | html %]</td>
-                    <td>[% a.birthday.date | html %]</td>
-                    <td>[% a.postal_code | html %]</td>
-                    <td>[% a.prefecture.name | html %]</td>
-                    <td>[% a.create_time | html %]</td>
-                    <td>[% a.last_update | html %]</td>
+                  <tr role="row" class="odd" ng-repeat="address in data.address_books">
+                    <td class="sorting_1">{{ address.full_name }}</td>
+                    <td>{{ address.sex_code | genderDiscrimination }}</td>
+                    <td>{{ address.age }}</td>
+                    <td>{{ address.birthday }}</td>
+                    <td>{{ address.postal_code }}</td>
+                    <td>{{ address.prefecture }}</td>
+                    <td>{{ address.create_time }}</td>
+                    <td>{{ address.last_update }}</td>
                     <td>
                       <a href="#">確認 /</a>
                       <a href="#">編集 /</a>
                       <a href="#" data-method="delete">削除</a>
                     </td>
                   </tr>
-                  [% END %]
                   <tr role="row" class="odd">
                 </tbody>
               </table>
