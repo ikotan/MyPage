@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
-    <base href="/static/">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    [% INCLUDE layout/header.link.tt %]
-  </head>
+[% WRAPPER layout/html.wrapper.tt %]
+  [% WRAPPER layout/header.wrapper.tt %]
+  <!-- AngularJS CDN-->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js"></script>
+  [% END %]
   <body class="hold-transition skin-blue sidebar-mini sidebar-collapse" ng-app="addressBooks">
     <div class="wrapper">
 
@@ -58,4 +54,4 @@
     [% INCLUDE layout/footer.tt %]
 
   </body>
-</html>
+[% END %]
