@@ -9,7 +9,7 @@ View::TT:
 View::JSON:
   # allow_callback: 0
   # callback_param: 'cb'
-  expose_stash: 'address_books'
+  # expose_stash: ''
   # json_driver: JSON
   # no_x_json_header: 0
 Model::DBIC:
