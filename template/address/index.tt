@@ -14,8 +14,7 @@
         [% INCLUDE layout/content.header.tt %]
 
         <!-- Main content -->
-        <section class="content" ng-controller="mainCtrl" >
-          <h1>{{ title }}</h1>
+        <section class="content" ng-controller="listCtrl" >
           <!-- Tabile -->
           [% INCLUDE address/contents/list.tt %]
           <!-- Tabile -->
