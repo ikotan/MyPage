@@ -2,7 +2,7 @@ addressBooks
 
 .factory('apiResource', ['$resource', function($resource) {
   return $resource('/api/address', null, {
-    'list': { method: 'GET', url: '/api/address/list', params: { page: '@page' } },
+    'list': { method: 'GET', url: '/api/address/list', params: { page: '@page', rows: '@rows' } },
   });
 }])
 
