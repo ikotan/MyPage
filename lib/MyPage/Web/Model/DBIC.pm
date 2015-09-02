@@ -6,14 +6,7 @@ use base 'Catalyst::Model::DBIC::Schema';
 __PACKAGE__->config(
     schema_class => 'MyPage::Web::Schema',
     
-    connect_info => {
-        dsn => 'dbi:mysql:mypage',
-        user => 'root',
-        password => '',
-        AutoCommit => q{q1},
-        on_connect_do => ["SET NAMES utf8"],
-        mysql_enable_utf8 => q{1},
-    }
+    
 );
 
 =head1 NAME

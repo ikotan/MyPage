@@ -13,8 +13,18 @@ View::JSON:
   # json_driver: JSON
   # no_x_json_header: 0
 Model::DBIC:
+  schema_class: 'MyPage::Web::Schema'
   connect_info:
     - 'dbi:mysql:mypage'
     - 'root'
     - ''
-    - mysql_enable_utf8 : 1
+    - AutoCommit : 1
+      on_connect_do : ["SET NAMES utf8"]
+      mysql_enable_utf8 : 1
+  # connect_info:
+    # dsn: 'dbi:mysql:mypage'
+    # user: 'root'
+    # password: ''
+    # AutoCommit : 1
+    # on_connect_do : ["SET NAMES utf8"]
+    # mysql_enable_utf8 : 1
