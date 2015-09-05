@@ -45,7 +45,13 @@ Attempt to render a view, if needed.
 sub end : ActionClass('RenderView') {
   my ( $self, $c ) = @_;
 
-  $c->forward('View::JSON') if $c->req->path =~ m/^api/;
+  $c->forward('View::JSON') if $self->_is_api_get( $c->req->path, $c->req->method );
+}
+
+sub _is_api_get :Private {
+  my ( $self, $path, $method ) = @_;
+
+  return ( $path =~ m/^api/ && $method eq 'GET' ) ? 1 : 0;
 }
 
 =head1 AUTHOR

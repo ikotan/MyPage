@@ -17,10 +17,7 @@ sub index :Path :Args(0) {
 sub get_create :GET Path('create') Args(0) {
   my ( $self, $c ) = @_;
 
-  $c->stash(
-    prefectures => [ $c->model("DBIC::Prefecture")->all ],
-    template    => 'address/create.tt'
-  );
+  $c->stash( template => 'address/create.tt' );
 }
 
 sub post_create :POST Path('create') Args(0) {
@@ -35,27 +32,13 @@ sub post_create :POST Path('create') Args(0) {
 sub base :Chained('/') PathPart('address') CaptureArgs(1) {
   my ( $self, $c, $args ) = @_;
 
-  $c->stash(
-    prefectures => [ $c->model("DBIC::Prefecture")->all ],
-    address     => $c->model("DBIC::AddressBook")->find( $args ),
-  );
+  $c->stash( address => $c->model("DBIC::AddressBook")->find( $args ) );
 }
 
 sub get_edit :Chained('base') GET PathPart('edit') Args(0) {
   my ( $self, $c ) = @_;
 
-  $c->stash( template => 'address/edit.tt');
-}
-
-sub post_edit :Chained('base') POST PathPart('edit') Args(0) {
-  my ( $self, $c ) = @_;
-}
-
-sub delete :Chained('base') DELETE PathPart('delete') Args(0) {
-  my ( $self, $c ) = @_;
-  warn Dumper "############";
-  warn Dumper "DELETE";
-  warn Dumper "############";
+  $c->stash( template => 'address/edit.tt' );
 }
 
 =encoding utf8

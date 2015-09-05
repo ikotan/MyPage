@@ -18,6 +18,52 @@ sub list :GET Path('list') :Args(0) {
   $c->stash( address_books => $data );
 }
 
+sub prefectures :GET Path('prefectures') Args(0) {
+  my ( $self, $c ) = @_;
+
+  my $api = MyPage::Util::API::Address->new;
+  $c->stash( prefectures =>
+    $api->expand_dbic( [ $c->model("DBIC::Prefecture")->all ] ) );
+}
+
+sub post_create :POST Path('create') Args(0) {
+  my ( $self, $c ) = @_;
+
+  my $data = MyPage::Util::Logic::Address->new->create_params( $c->req->params );
+  $c->model("DBIC::AddressBook")->create( $data );
+
+  $c->res->redirect( $c->uri_for('/address') );
+}
+
+sub base :Chained('/') PathPart('api/address') CaptureArgs(1) {
+  my ( $self, $c, $args ) = @_;
+
+  $c->stash( address => $c->model("DBIC::AddressBook")->find( $args ) );
+}
+
+# sub get_edit :Chained('base') GET PathPart('edit') Args(0) {
+  # my ( $self, $c ) = @_;
+
+  # $c->stash( prefectures => [ $c->model("DBIC::Prefecture")->all ] );
+# }
+
+# sub post_edit :Chained('base') POST PathPart('edit') Args(0) {
+  # my ( $self, $c ) = @_;
+
+  # $c->stash( prefectures => [ $c->model("DBIC::Prefecture")->all ] );
+# }
+
+sub delete :Chained('base') DELETE PathPart('delete') Args(0) {
+  my ( $self, $c ) = @_;
+
+  my $address = $c->stash->{ address };
+  $c->res->body(0) unless ( $address );
+
+  $address->update( { delete_flag => 1 } );
+  $c->res->body(1);
+}
+
+
 =encoding utf8
 
 =head1 AUTHOR

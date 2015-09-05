@@ -14,7 +14,7 @@ sub search_list {
 
   my $schema = $self->schema;
   return [ $self->schema->resultset("AddressBook")->search(
-    undef,
+    { delete_flag => 0 },
     {
       join => 'prefecture',
       page => $params->{ page } // DEFAULT_PAGE,

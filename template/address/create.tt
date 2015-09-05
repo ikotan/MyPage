@@ -3,7 +3,7 @@
   <!-- AngularJS CDN-->
   [% INCLUDE plugins/angular.include.tt %]
   [% END %]
-  <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+  <body class="hold-transition skin-blue sidebar-mini sidebar-collapse" ng-app="addressBooks">
     <div class="wrapper">
       [% INCLUDE layout/header.tt %]
       <!-- Left side column. contains the logo and sidebar -->
@@ -14,7 +14,7 @@
         [% INCLUDE layout/content.header.tt %]
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content" ng-controller="createCtrl">
           <!-- Register form -->
           [% INCLUDE address/form/address.tt %]
           <!-- Register form -->

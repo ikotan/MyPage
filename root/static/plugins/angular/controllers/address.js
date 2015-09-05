@@ -1,12 +1,12 @@
 addressBooks
 
-.controller('listCtrl', ['$scope', 'apiResource', 'addressResource', function($scope, apiResource, addressResource) {
+.controller('listCtrl', ['$scope', 'addressResource', function($scope, addressResource) {
   $scope.config = {
     page: 1,
     rows: 50,
   };
 
-  apiResource.list(
+  addressResource.list(
     { page: $scope.config.page, rows: $scope.config.rows },
     function(data) {
       $scope.data = data;
@@ -14,13 +14,19 @@ addressBooks
   );
 
   $scope.addressDelete = function(id) {
-    addressResource.delete(
-      { addressId: id },
-      function(data) {
-        console.log(data);
-      }
-    )
+    addressResource.delete( { addressId: id }, function(data) {
+      console.log(data);
+    })
   };
+
+}])
+
+.controller('createCtrl', ['$scope', 'addressResource', function($scope, addressResource) {
+  addressResource.prefectures( {}, function(data) {
+    $scope.prefectures = data.prefectures;
+    $scope.prefecture;
+  })
+  $scope.address;
 
 }])
 
