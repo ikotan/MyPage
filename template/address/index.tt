@@ -33,6 +33,7 @@
     <script src="/static/plugins/angular/address.app.js"></script>
     <script src="/static/plugins/angular/controllers/address.js"></script>
     <script src="/static/plugins/angular/services/api/address.js"></script>
+    <script src="/static/plugins/angular/services/logic/address.js"></script>
     <script src="/static/plugins/angular/filters.js"></script>
     [% END %]
 

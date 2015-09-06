@@ -20,20 +20,24 @@ sub create :POST Path Args(0) {
 sub base :Chained('/') PathPart('api/address') CaptureArgs(1) {
   my ( $self, $c, $args ) = @_;
 
+  my $api = MyPage::Util::API::Address->new;
   $c->stash( address => $c->model("DBIC::AddressBook")->find( $args ) );
 }
 
-# sub get_edit :Chained('base') GET PathPart('edit') Args(0) {
-  # my ( $self, $c ) = @_;
+sub show :Chained('base') GET PathPart('') Args(0) {
+  my ( $self, $c ) = @_;
 
-  # $c->stash( prefectures => [ $c->model("DBIC::Prefecture")->all ] );
-# }
+  my $api = MyPage::Util::API::Address->new;
 
-# sub post_edit :Chained('base') POST PathPart('edit') Args(0) {
-  # my ( $self, $c ) = @_;
+  $c->stash( address_book =>
+    $api->format_address( $c->stash->{ address } ) );
+}
 
-  # $c->stash( prefectures => [ $c->model("DBIC::Prefecture")->all ] );
-# }
+sub edit :Chained('base') POST PathPart('') Args(0) {
+  my ( $self, $c ) = @_;
+
+  $c->stash( prefectures => [ $c->model("DBIC::Prefecture")->all ] );
+}
 
 sub delete :Chained('base') DELETE PathPart('') Args(0) {
   my ( $self, $c ) = @_;
@@ -45,7 +49,7 @@ sub delete :Chained('base') DELETE PathPart('') Args(0) {
   $c->res->body(1);
 }
 
-sub list :GET Path('list') :Args(0) {
+sub list :GET Path('') :Args(0) {
   my ( $self, $c ) = @_;
 
   my $api = MyPage::Util::API::Address->new;

@@ -37,7 +37,7 @@
                     <td rowspan="1" colspan="1">{{ address.last_update }}</td>
                     <td rowspan="1" colspan="1">
                       <a href="#">確認 /</a>
-                      <a href="#">編集 /</a>
+                      <a href="Javascript:void(0)" ng-click="editTransition(address.address_books_id)">編集 /</a>
                       <a href="javascript:void(0)" ng-click="addressDelete(address.address_books_id)">削除</a>
                     </td>
                   </tr>

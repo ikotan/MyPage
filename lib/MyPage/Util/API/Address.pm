@@ -4,6 +4,22 @@ use namespace::autoclean;
 
 extends 'MyPage::Util::API';
 
+sub format_address {
+  my ( $self, $result ) = @_;
+
+  return +{
+    address_books_id => $result->address_books_id,
+    full_name        => $result->full_name,
+    sex_code         => $result->sex_code,
+    age              => $result->age,
+    birthday         => $result->get_column('birthday'),
+    postal_code      => $result->postal_code,
+    prefecture       => $result->prefecture->name,
+    create_time      => $result->get_column('create_time'),
+    last_update      => $result->get_column('last_update')
+  };
+}
+
 sub format_list {
   my ( $self, $result ) = @_;
 
