@@ -90,7 +90,7 @@ addressBooks
     $scope.getAddress = function(id) {
       AddressResource.get({ addressId: id }, function(data) {
         console.log(data);
-        $scope.address = data;
+        $scope.address = data.address_book;
       });
     };
 

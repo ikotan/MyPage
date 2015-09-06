@@ -12,9 +12,13 @@ sub format_address {
     full_name        => $result->full_name,
     sex_code         => $result->sex_code,
     age              => $result->age,
-    birthday         => $result->get_column('birthday'),
+    year             => $result->birth_year,
+    month            => $result->birth_month,
+    day              => $result->birth_day,
     postal_code      => $result->postal_code,
     prefecture       => $result->prefecture->name,
+    city             => $result->city,
+    address          => $result->address,
     create_time      => $result->get_column('create_time'),
     last_update      => $result->get_column('last_update')
   };
