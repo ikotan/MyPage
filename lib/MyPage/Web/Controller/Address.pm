@@ -14,19 +14,10 @@ sub index :Path :Args(0) {
     MyPage::Util::Logic::Address->new->search_list( $c->req->params ) );
 }
 
-sub get_create :GET Path('create') Args(0) {
+sub create :GET Path('create') Args(0) {
   my ( $self, $c ) = @_;
 
   $c->stash( template => 'address/create.tt' );
-}
-
-sub post_create :POST Path('create') Args(0) {
-  my ( $self, $c ) = @_;
-
-  my $data = MyPage::Util::Logic::Address->new->create_params( $c->req->params );
-  $c->model("DBIC::AddressBook")->create( $data );
-
-  $c->res->redirect( $c->uri_for('/address') );
 }
 
 sub base :Chained('/') PathPart('address') CaptureArgs(1) {
@@ -35,7 +26,7 @@ sub base :Chained('/') PathPart('address') CaptureArgs(1) {
   $c->stash( address => $c->model("DBIC::AddressBook")->find( $args ) );
 }
 
-sub get_edit :Chained('base') GET PathPart('edit') Args(0) {
+sub edit :Chained('base') GET PathPart('edit') Args(0) {
   my ( $self, $c ) = @_;
 
   $c->stash( template => 'address/edit.tt' );

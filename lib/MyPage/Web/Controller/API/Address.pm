@@ -8,31 +8,13 @@ use Data::Dumper::Names;
 
 BEGIN { extends 'Catalyst::Controller'; }
 
-sub list :GET Path('list') :Args(0) {
-  my ( $self, $c ) = @_;
-
-  my $api = MyPage::Util::API::Address->new;
-  my $data = $api->format_list(
-    MyPage::Util::Logic::Address->new->search_list( $c->req->params ) );
-
-  $c->stash( address_books => $data );
-}
-
-sub prefectures :GET Path('prefectures') Args(0) {
-  my ( $self, $c ) = @_;
-
-  my $api = MyPage::Util::API::Address->new;
-  $c->stash( prefectures =>
-    $api->expand_dbic( [ $c->model("DBIC::Prefecture")->all ] ) );
-}
-
-sub post_create :POST Path('create') Args(0) {
+sub create :POST Path Args(0) {
   my ( $self, $c ) = @_;
 
   my $data = MyPage::Util::Logic::Address->new->create_params( $c->req->params );
   $c->model("DBIC::AddressBook")->create( $data );
 
-  $c->res->redirect( $c->uri_for('/address') );
+  $c->res->body(1);
 }
 
 sub base :Chained('/') PathPart('api/address') CaptureArgs(1) {
@@ -53,7 +35,7 @@ sub base :Chained('/') PathPart('api/address') CaptureArgs(1) {
   # $c->stash( prefectures => [ $c->model("DBIC::Prefecture")->all ] );
 # }
 
-sub delete :Chained('base') DELETE PathPart('delete') Args(0) {
+sub delete :Chained('base') DELETE PathPart('') Args(0) {
   my ( $self, $c ) = @_;
 
   my $address = $c->stash->{ address };
@@ -61,6 +43,24 @@ sub delete :Chained('base') DELETE PathPart('delete') Args(0) {
 
   $address->update( { delete_flag => 1 } );
   $c->res->body(1);
+}
+
+sub list :GET Path('list') :Args(0) {
+  my ( $self, $c ) = @_;
+
+  my $api = MyPage::Util::API::Address->new;
+  my $data = $api->format_list(
+    MyPage::Util::Logic::Address->new->search_list( $c->req->params ) );
+
+  $c->stash( address_books => $data );
+}
+
+sub prefectures :GET Path('prefectures') Args(0) {
+  my ( $self, $c ) = @_;
+
+  my $api = MyPage::Util::API::Address->new;
+  $c->stash( prefectures =>
+    $api->expand_dbic( [ $c->model("DBIC::Prefecture")->all ] ) );
 }
 
 

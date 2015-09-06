@@ -12,6 +12,7 @@
               <table class="table table-bordered table-hover" role="grid">
                 <thead>
                   <tr role="row">
+                    <th rowspan="1" colspan="1">ID</th>
                     <th rowspan="1" colspan="1">名前</th>
                     <th rowspan="1" colspan="1">性別</th>
                     <th rowspan="1" colspan="1">年齢</th>
@@ -25,6 +26,7 @@
                 </thead>
                 <tbody>
                   <tr role="row" class="odd" ng-repeat="address in data.address_books">
+                    <td rowspan="1" colspan="1">{{ address.address_books_id }}</td>
                     <td rowspan="1" colspan="1">{{ address.full_name }}</td>
                     <td rowspan="1" colspan="1">{{ address.sex_code | genderDiscrimination }}</td>
                     <td rowspan="1" colspan="1">{{ address.age }}</td>

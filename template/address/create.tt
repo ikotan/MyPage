@@ -32,20 +32,9 @@
     <script src="/static/plugins/angular/address.app.js"></script>
     <script src="/static/plugins/angular/controllers/address.js"></script>
     <script src="/static/plugins/angular/services/api/address.js"></script>
+    <script src="/static/plugins/angular/services/util/date.js"></script>
     <script src="/static/plugins/angular/filters.js"></script>
     [% END %]
-    <!-- test-code -->
-    <script>
-      $("[name='full_name']").val("田中太郎");
-      $("[name='year']").val(1990);
-      $("[name='month']").val(1);
-      $("[name='day']").val(1);
-      $("[name='postal_code']").val("111-1111");
-      $("[name='prefecture_id']").val(1);
-      $("[name='city']").val("行田市");
-      $("[name='address']").val("子安");
-    </script>
-    <!-- test-code -->
 
   </body>
 [% END %]
