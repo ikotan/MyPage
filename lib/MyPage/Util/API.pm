@@ -4,7 +4,7 @@ use namespace::autoclean;
 
 extends 'MyPage::Util';
 
-sub expand_dbic {
+sub format_dbic {
   my ( $self, $data ) = @_;
   return [ map { +{ $_->get_columns } } @$data ];
 }

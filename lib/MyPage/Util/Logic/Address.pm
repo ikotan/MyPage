@@ -12,7 +12,6 @@ use Data::Dumper::Names;
 sub search_list {
   my ( $self, $params ) = @_;
 
-  my $schema = $self->schema;
   return [ $self->schema->resultset("AddressBook")->search(
     { delete_flag => 0 },
     {
