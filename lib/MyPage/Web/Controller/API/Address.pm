@@ -61,7 +61,7 @@ sub prefectures :GET Path('prefectures') Args(0) {
 
   my $api = MyPage::Util::API::Address->new;
   $c->stash( prefectures =>
-    $api->format_dbic( [ $c->model("DBIC::Prefecture")->all ] ) );
+    $api->format_prefectures( [ $c->model("DBIC::Prefecture")->all ] ) );
 }
 
 

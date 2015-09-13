@@ -69,7 +69,7 @@
           <div class="form-group">
             <label for="Prefecture" class="col-sm-2 control-label">都道府県</label>
             <div class="col col-xs-7 col-sm-4 col-md-3">
-              <select name="prefecture_id" id="Prefecture" class="form-control" ng-model="address.prefecture_id" ng-options="p.prefecture_id as p.name for p in prefectures" required ng-init="$scope.address.prefecture_id">
+              <select name="prefecture_id" id="Prefecture" class="form-control" ng-options="p.name for p in prefectures track by p.prefecture_id" ng-model="address.prefecture" required>
                  <option value="">選択してください</option>
               </select>
             </div>

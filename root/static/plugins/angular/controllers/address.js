@@ -66,7 +66,9 @@ addressBooks
         month: 10,
         day: 5,
         postal_code: "333-3333",
-        prefecture_id: 25,
+        prefecture: {
+          prefecture_id: 25
+        },
         city: "太田市",
         address: "１－１－１"
       };
@@ -83,19 +85,29 @@ addressBooks
 
 .controller('editCtrl', ['$scope', '$window', 'AddressResource', 'UtilDate', 'AddressLogic',
   function($scope, $window, AddressResource, UtilDate, AddressLogic) {
+    $scope.address = {};
     $scope.config = {
       addressId: AddressLogic.getPathId(),
     };
 
-    $scope.getAddress = function(id) {
-      AddressResource.get({ addressId: id }, function(data) {
+    $scope.getAddress = function() {
+      AddressResource.get({ addressId: $scope.config.addressId }, function(data) {
         console.log(data);
         $scope.address = data.address_book;
+        $scope.address.prefecture = { prefecture_id: data.address_book.prefecture_id };
       });
     };
 
+    $scope.getAllPrefectures = function() {
+      AddressResource.prefectures( {}, function(data) {
+        console.log(data);
+        $scope.prefectures = data.prefectures;
+      })
+    };
+
     $scope.init = function() {
-      $scope.getAddress($scope.config.addressId);
+      $scope.getAddress();
+      $scope.getAllPrefectures();
     };
     $scope.init();
 }])

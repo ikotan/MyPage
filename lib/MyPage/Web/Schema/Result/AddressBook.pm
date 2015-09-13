@@ -177,6 +177,12 @@ __PACKAGE__->set_primary_key("address_books_id");
 
 __PACKAGE__->belongs_to( prefecture => 'MyPage::Web::Schema::Result::Prefecture', 'prefecture_id' );
 
+__PACKAGE__->inflate_column('address_books_id', { inflate => sub { int(shift) } });
+
+__PACKAGE__->inflate_column('sex_code', { inflate => sub { int(shift) } });
+
+__PACKAGE__->inflate_column('prefecture_id', { inflate => sub { int(shift) } });
+
 extends 'MyPage::Web::Schema::ResultBase';
 
 sub age {
@@ -189,6 +195,7 @@ sub birth_year { shift->birthday->year }
 sub birth_month { shift->birthday->month }
 
 sub birth_day { shift->birthday->day }
+
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

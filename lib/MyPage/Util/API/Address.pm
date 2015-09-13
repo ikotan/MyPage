@@ -5,27 +5,27 @@ use namespace::autoclean;
 extends 'MyPage::Util::API';
 
 sub format_address {
-  my ( $self, $result ) = @_;
+  my ( $self, $row ) = @_;
 
   return +{
-    address_books_id => $result->address_books_id,
-    full_name        => $result->full_name,
-    sex_code         => $result->sex_code,
-    age              => $result->age,
-    year             => $result->birth_year,
-    month            => $result->birth_month,
-    day              => $result->birth_day,
-    postal_code      => $result->postal_code,
-    prefecture       => $result->prefecture->name,
-    city             => $result->city,
-    address          => $result->address,
-    create_time      => $result->get_column('create_time'),
-    last_update      => $result->get_column('last_update')
+    address_books_id => $row->address_books_id,
+    full_name        => $row->full_name,
+    sex_code         => $row->sex_code,
+    age              => $row->age,
+    year             => $row->birth_year,
+    month            => $row->birth_month,
+    day              => $row->birth_day,
+    postal_code      => $row->postal_code,
+    prefecture_id    => $row->prefecture_id,
+    city             => $row->city,
+    address          => $row->address,
+    create_time      => $row->get_column('create_time'),
+    last_update      => $row->get_column('last_update')
   };
 }
 
 sub format_list {
-  my ( $self, $result ) = @_;
+  my ( $self, $rows ) = @_;
 
   return [ map { +{
       address_books_id => $_->address_books_id,
@@ -38,7 +38,17 @@ sub format_list {
       create_time      => $_->get_column('create_time'),
       last_update      => $_->get_column('last_update')
     }
-  } @$result ];
+  } @$rows ];
+}
+
+sub format_prefectures {
+  my ( $self, $rows ) = @_;
+
+  return [ map { +{
+      prefecture_id => $_->prefecture_id,
+      name          => $_->name
+    }
+  } @$rows ];
 }
 
 
