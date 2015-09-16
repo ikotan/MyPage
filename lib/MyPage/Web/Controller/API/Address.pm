@@ -32,9 +32,15 @@ sub show :Chained('base') GET PathPart('') Args(0) {
     $api->format_address( $c->stash->{ address } ) );
 }
 
-# sub edit :Chained('base') POST PathPart('') Args(0) {
-  # my ( $self, $c ) = @_;
-# }
+sub edit :Chained('base') POST PathPart('') Args(0) {
+  my ( $self, $c ) = @_;
+
+  my $address = $c->stash->{ address };
+  my $data = MyPage::Util::Logic::Address->new->update_params( $c->req->params );
+  $address->update( $data );
+
+  $c->res->body(1);
+}
 
 sub delete :Chained('base') DELETE PathPart('') Args(0) {
   my ( $self, $c ) = @_;

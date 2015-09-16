@@ -6,8 +6,7 @@
       <div class="box-header with-border">
         <h3 class="box-title">新規登録画面</h3>
       </div>
-      <form name="addressForm" class="form-horizontal" novalidate ng-submit="createAddress()">
-        <pre>{{ address | json }}</pre>
+      <form name="addressForm" class="form-horizontal" novalidate ng-submit="submitAddress()">
         <div class="box-body">
           <div class="form-group" ng-class="{ 'has-error': addressForm.full_name.$dirty && addressForm.full_name.$invalid }">
             <label for="full_name" class="col-sm-2 control-label">お名前</label>

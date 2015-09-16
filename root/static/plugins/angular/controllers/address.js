@@ -46,7 +46,7 @@ addressBooks
       })
     };
 
-    $scope.createAddress = function() {
+    $scope.submitAddress = function() {
       var address = $scope.address;
       console.log(address);
       $scope.address.birthday = UtilDate.toDate(new Date(address.year, address.month, address.day));
@@ -103,6 +103,19 @@ addressBooks
         console.log(data);
         $scope.prefectures = data.prefectures;
       })
+    };
+
+    $scope.submitAddress = function() {
+      var address = $scope.address;
+      console.log(address);
+      $scope.address.birthday = UtilDate.toDate(new Date(address.year, address.month, address.day));
+      AddressResource.update(
+        { addressId: $scope.config.addressId },
+        $.param(address),
+        function(data) {
+          console.log(data);
+        }
+      );
     };
 
     $scope.init = function() {
