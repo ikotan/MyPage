@@ -177,6 +177,12 @@ __PACKAGE__->set_primary_key("address_books_id");
 
 __PACKAGE__->belongs_to( prefecture => 'MyPage::Web::Schema::Result::Prefecture', 'prefecture_id' );
 
+__PACKAGE__->resultset_attributes({
+  alias => 'address_book',
+  from  => [ { address_book => 'address_books' } ],
+  where => { 'address_book.delete_flag' => 0 },
+});
+
 __PACKAGE__->inflate_column('address_books_id', { inflate => sub { int(shift) } });
 
 __PACKAGE__->inflate_column('sex_code', { inflate => sub { int(shift) } });

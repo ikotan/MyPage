@@ -109,6 +109,7 @@ addressBooks
       var address = $scope.address;
       console.log(address);
       $scope.address.birthday = UtilDate.toDate(new Date(address.year, address.month, address.day));
+      address.prefecture_id = address.prefecture.prefecture_id;
       AddressResource.update(
         { addressId: $scope.config.addressId },
         $.param(address),
