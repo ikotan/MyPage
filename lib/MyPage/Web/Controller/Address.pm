@@ -26,6 +26,12 @@ sub base :Chained('/') PathPart('address') CaptureArgs(1) {
   $c->stash( address => $c->model("DBIC::AddressBook")->find( $args ) );
 }
 
+sub show :Chained('base') GET PathPart('') Args(0) {
+  my ( $self, $c ) = @_;
+
+  $c->stash( template => 'address/show.tt' );
+}
+
 sub edit :Chained('base') GET PathPart('edit') Args(0) {
   my ( $self, $c ) = @_;
 

@@ -4,7 +4,7 @@
   <div class="col-sm-8">
     <div class="box box-info">
       <div class="box-header with-border">
-        <h3 class="box-title">新規登録画面</h3>
+        <h3 class="box-title">{{ config.title }}画面</h3>
       </div>
       <form name="addressForm" class="form-horizontal" novalidate ng-submit="submitAddress()">
         <div class="box-body">

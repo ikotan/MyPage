@@ -1,0 +1,72 @@
+<!-- Register form -->
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{ config.title }}画面</h3>
+      </div>
+      <div class="box-body">
+        <div id="example2_wrapper" class="form-inline dt-bootstrap">
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table no-margin table-hover" role="grid">
+                <tbody>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">ID</th>
+                    <td rowspan="1" colspan="1">{{ address.address_books_id }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">名前</th>
+                    <td rowspan="1" colspan="1">{{ address.full_name }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">性別</th>
+                    <td rowspan="1" colspan="1">{{ address.sex_code | genderDiscrimination }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">年齢</th>
+                    <td rowspan="1" colspan="1">{{ address.age }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">生年月日</th>
+                    <td rowspan="1" colspan="1">{{ address.birthday }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">郵便番号</th>
+                    <td rowspan="1" colspan="1">{{ address.postal_code }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">都道府県</th>
+                    <td rowspan="1" colspan="1">{{ address.prefecture_name }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">住所</th>
+                    <td rowspan="1" colspan="1">{{ address.city }} {{ address.address }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">登録日</th>
+                    <td rowspan="1" colspan="1">{{ address.create_time }}</td>
+                  </tr>
+                  <tr role="row">
+                    <th rowspan="1" colspan="1">更新日</th>
+                    <td rowspan="1" colspan="1">{{ address.last_update }}</td>
+                  </tr>
+                  <tr role="row" class="odd" ng-if="address.address_books_id == ''">
+                    <td colspan=9>データが存在しません。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overlay" ng-if="ddress.address_books_id == ''">
+        <i class="fa fa-refresh fa-spin"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div><!-- /.row -->
+<!-- Register form -->
+

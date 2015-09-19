@@ -24,8 +24,12 @@ addressBooks
       })
     };
 
-    $scope.editTransition = function(id) {
-      $window.location.href = AddressLogic.editUrl(id);
+    $scope.showTransition = function(addressId) {
+      $window.location.href = AddressLogic.showUrl(addressId);
+    };
+
+    $scope.editTransition = function(addressId) {
+      $window.location.href = AddressLogic.editUrl(addressId);
     };
 
     $scope.init = function() {
@@ -39,6 +43,9 @@ addressBooks
 .controller('createCtrl', ['$scope', 'AddressResource', 'UtilDate',
   function($scope, AddressResource, UtilDate) {
     $scope.address = {};
+    $scope.config = {
+      title: "登録",
+    };
 
     $scope.getAllPrefectures = function() {
       AddressResource.prefectures( {}, function(data) {
@@ -48,8 +55,9 @@ addressBooks
 
     $scope.submitAddress = function() {
       var address = $scope.address;
-      console.log(address);
       $scope.address.birthday = UtilDate.toDate(new Date(address.year, address.month, address.day));
+      address.prefecture_id = address.prefecture.prefecture_id;
+      console.log(address);
       AddressResource.create(
         $.param(address),
         function(data) {
@@ -58,35 +66,43 @@ addressBooks
       );
     };
 
-    $scope.defaultAddress = function() {
-      $scope.address = {
-        full_name: "田中太郎",
-        sex_code: 0,
-        year: 1955,
-        month: 10,
-        day: 5,
-        postal_code: "333-3333",
-        prefecture: {
-          prefecture_id: 25
-        },
-        city: "太田市",
-        address: "１－１－１"
-      };
-    };
-
     $scope.init = function() {
       $scope.getAllPrefectures();
-      $scope.defaultAddress();
     };
     $scope.init();
 }])
 
 
 
-.controller('editCtrl', ['$scope', '$window', 'AddressResource', 'UtilDate', 'AddressLogic',
-  function($scope, $window, AddressResource, UtilDate, AddressLogic) {
+.controller('showCtrl', ['$scope', 'AddressResource', 'AddressLogic',
+  function($scope, AddressResource, AddressLogic) {
     $scope.address = {};
     $scope.config = {
+      title: "確認",
+      addressId: AddressLogic.getPathId(),
+    };
+
+    $scope.getAddress = function() {
+      AddressResource.get({ addressId: $scope.config.addressId }, function(data) {
+        console.log(data);
+        $scope.address = data.address_book;
+        $scope.address.prefecture = { prefecture_id: data.address_book.prefecture_id };
+      });
+    };
+
+    $scope.init = function() {
+      $scope.getAddress();
+    };
+    $scope.init();
+}])
+
+
+
+.controller('editCtrl', ['$scope', 'AddressResource', 'UtilDate', 'AddressLogic',
+  function($scope, AddressResource, UtilDate, AddressLogic) {
+    $scope.address = {};
+    $scope.config = {
+      title: "編集",
       addressId: AddressLogic.getPathId(),
     };
 

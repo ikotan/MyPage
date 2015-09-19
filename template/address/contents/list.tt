@@ -9,7 +9,7 @@
         <div id="example2_wrapper" class="form-inline dt-bootstrap">
           <div class="row">
             <div class="col-sm-12">
-              <table class="table table-bordered table-hover" role="grid">
+              <table class="table no-margin table-hover" role="grid">
                 <thead>
                   <tr role="row">
                     <th rowspan="1" colspan="1">ID</th>
@@ -36,8 +36,8 @@
                     <td rowspan="1" colspan="1">{{ address.create_time }}</td>
                     <td rowspan="1" colspan="1">{{ address.last_update }}</td>
                     <td rowspan="1" colspan="1">
-                      <a href="#">確認 /</a>
-                      <a href="Javascript:void(0)" ng-click="editTransition(address.address_books_id)">編集 /</a>
+                      <a href="Javascript:void(0)" ng-click="showTransition(address.address_books_id)">確認</a> /
+                      <a href="Javascript:void(0)" ng-click="editTransition(address.address_books_id)">編集</a> /
                       <a href="javascript:void(0)" ng-click="addressDelete(address.address_books_id)">削除</a>
                     </td>
                   </tr>
