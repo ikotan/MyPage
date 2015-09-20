@@ -1,0 +1,5 @@
+#! /bin/sh
+exec 2>&1
+cd /home/vagrant/practice/Perl_Practice/Catalyst/MyPage
+export PATH=/home/vagrant/perl5/perlbrew/perls/perl-5.16.3/lib:${PATH}
+exec setuidgid vagrant /home/vagrant/perl5/perlbrew/perls/perl-5.16.3/bin/starman mypage_web.psgi --p 8080 --workers 1
